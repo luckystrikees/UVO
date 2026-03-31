@@ -36,7 +36,7 @@ export default function Hero() {
         
         {/* Subheading */}
         <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Unapologetic sounds for an unapologetic community. 
+          Unapologetic sounds.
           <span className="text-purple-400 font-semibold"> Loud, proud, and militant.</span>
         </p>
         
