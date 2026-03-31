@@ -15,7 +15,7 @@ export default function App() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
               </svg>
             </div>
-            <span className="text-white font-bold text-xl">Autistic Pride Music</span>
+            <span className="text-white font-bold text-xl">Music for the Unapologetically Autistic</span>
           </div>
           <div className="flex gap-4">
             <a href="#artists" className="text-slate-300 hover:text-white transition-colors">Artists</a>
