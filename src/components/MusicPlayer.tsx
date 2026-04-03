@@ -60,8 +60,8 @@ const tracks: Track[] = [
   {
     id: 6,
     title: "19.12 Precises",
-    artist: "Unknown Artist",
-    album: "Unknown Album",
+    artist: "Autismdecon",
+    album: "La Logique au Pouvoir",
     duration: "0:00",
     cover: "🎵",
     coverImage: "/audio/19-12-precises.png",
