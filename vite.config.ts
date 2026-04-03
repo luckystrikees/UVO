@@ -16,4 +16,18 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  css: {
+    preprocessorOptions: {
+      css: {
+        additionalData: `
+          @layer theme {
+            :root {
+              --font-sans: 'Inter', system-ui, sans-serif;
+              --font-serif: 'Playfair Display', serif;
+            }
+          }
+        `,
+      },
+    },
+  },
 });

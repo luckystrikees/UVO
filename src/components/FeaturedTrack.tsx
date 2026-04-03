@@ -1,58 +1,57 @@
 export default function FeaturedTrack() {
   return (
-    <section className="py-16 px-4 bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 relative overflow-hidden">
+    <section className="py-16 px-4 relative overflow-hidden" style={{ backgroundColor: "rgba(10, 8, 6, 0.9)" }}>
       {/* Background decoration */}
       <div className="absolute inset-0">
-        <div className="absolute top-10 left-1/4 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-1/4 w-48 h-48 bg-pink-600/10 rounded-full blur-3xl" />
+        <div className="absolute top-10 left-1/4 w-64 h-64 rounded-full blur-3xl" style={{ backgroundColor: "rgba(212,175,55,0.08)" }} />
+        <div className="absolute bottom-10 right-1/4 w-48 h-48 rounded-full blur-3xl" style={{ backgroundColor: "rgba(194,59,59,0.06)" }} />
       </div>
 
       <div className="relative max-w-6xl mx-auto">
         <div className="text-center mb-10">
-          <span className="inline-block px-4 py-1.5 bg-gradient-to-r from-purple-600 to-amber-600 text-white text-sm font-semibold rounded-full mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-4" style={{ backgroundColor: "rgba(212,175,55,0.2)", color: "#D4AF37", fontFamily: "'Inter', system-ui, sans-serif" }}>
             Featured Release
           </span>
-          <h2 className="text-3xl md:text-5xl font-black text-white">
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-amber-400 bg-clip-text text-transparent">
-              La Logique au Pouvoir
-            </span>
+          <h2 className="text-3xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Playfair Display', serif", color: "#F5F5F5" }}>
+            <span>La Logique au Pouvoir</span>
           </h2>
-          <p className="text-slate-400 text-lg mt-2">by Autismdecon</p>
+          <p className="mt-2" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Inter', system-ui, sans-serif" }}>by Autismdecon</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Album Art */}
           <div className="flex justify-center">
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-600 to-amber-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
+              <div className="absolute inset-0 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300" style={{ backgroundColor: "rgba(212,175,55,0.3)" }} />
               <img
                 src="/audio/la-logique-au-pouvoir.png"
                 alt="La Logique au Pouvoir album cover"
-                className="relative w-full max-w-sm rounded-2xl shadow-2xl border border-purple-500/30"
+                className="relative w-full max-w-sm rounded-2xl shadow-2xl"
+                style={{ border: "1px solid rgba(255,255,255,0.1)" }}
               />
             </div>
           </div>
 
           {/* Track Info */}
           <div className="text-center md:text-left">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "'Playfair Display', serif", color: "#F5F5F5" }}>
               Now Available
             </h3>
-            <p className="text-slate-300 text-lg mb-6 leading-relaxed">
+            <p className="text-lg mb-6 leading-relaxed" style={{ color: "rgba(255,255,255,0.7)", fontFamily: "'Inter', system-ui, sans-serif" }}>
               Autismdecon brings a powerful voice to the autistic music scene with music that challenges neurotypical norms through logic and authentic expression.
             </p>
 
             {/* Track listing */}
             <div className="space-y-3 mb-8">
-              <div className="flex items-center gap-3 p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
-                <span className="text-amber-400 font-mono text-sm">01</span>
-                <span className="text-white flex-1">19.12 Precises</span>
-                <span className="text-slate-500 text-sm">La Logique au Pouvoir</span>
+              <div className="flex items-center gap-3 p-3 rounded-lg" style={{ backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                <span className="font-mono text-sm" style={{ color: "#D4AF37" }}>01</span>
+                <span className="flex-1" style={{ color: "#F5F5F5", fontFamily: "'Inter', system-ui, sans-serif" }}>19.12 Precises</span>
+                <span className="text-sm" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>La Logique au Pouvoir</span>
               </div>
-              <div className="flex items-center gap-3 p-3 bg-purple-900/20 rounded-lg border border-purple-500/20">
-                <span className="text-amber-400 font-mono text-sm">02</span>
-                <span className="text-white flex-1">La Logique au Pouvoir</span>
-                <span className="text-slate-500 text-sm">La Logique au Pouvoir</span>
+              <div className="flex items-center gap-3 p-3 rounded-lg" style={{ backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                <span className="font-mono text-sm" style={{ color: "#D4AF37" }}>02</span>
+                <span className="flex-1" style={{ color: "#F5F5F5", fontFamily: "'Inter', system-ui, sans-serif" }}>La Logique au Pouvoir</span>
+                <span className="text-sm" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>La Logique au Pouvoir</span>
               </div>
             </div>
 
@@ -62,7 +61,10 @@ export default function FeaturedTrack() {
                 window.dispatchEvent(new CustomEvent('playArtist', { detail: 'Autismdecon' }));
                 document.querySelector('#music-player')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-amber-600 text-white font-bold rounded-full shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 hover:scale-105 transition-all duration-300"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold shadow-lg transition-all duration-200"
+              style={{ backgroundColor: "#C23B3B", color: "#fff", fontFamily: "'Inter', system-ui, sans-serif" }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#a93232"; e.currentTarget.style.transform = "scale(1.05)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#C23B3B"; e.currentTarget.style.transform = "scale(1)"; }}
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />

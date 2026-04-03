@@ -187,30 +187,30 @@ export default function MusicPlayer() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 rounded-3xl p-6 shadow-2xl border border-purple-500/30">
+    <div className="rounded-3xl p-6 shadow-2xl" style={{ backgroundColor: "rgba(10, 8, 6, 0.9)", border: "1px solid rgba(255,255,255,0.08)" }}>
       {/* Album Art & Current Track */}
       <div className="text-center mb-6">
-        <div className="inline-flex items-center justify-center w-48 h-48 rounded-2xl bg-gradient-to-br from-pink-500 via-purple-500 to-amber-500 shadow-xl mb-4 overflow-hidden">
+        <div className="inline-flex items-center justify-center w-48 h-48 rounded-2xl shadow-xl mb-4 overflow-hidden" style={{ backgroundColor: "rgba(212,175,55,0.15)" }}>
           {currentTrack.coverImage ? (
             <img src={currentTrack.coverImage} alt={currentTrack.title} className="w-full h-full object-cover" />
           ) : (
             <span className="text-8xl">{currentTrack.cover}</span>
           )}
         </div>
-        <h3 className="text-2xl font-bold text-white mb-1">{currentTrack.title}</h3>
-        <p className="text-purple-300 text-lg">{currentTrack.artist}</p>
-        <p className="text-purple-400/70 text-sm">{currentTrack.album}</p>
+        <h3 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Playfair Display', serif", color: "#F5F5F5" }}>{currentTrack.title}</h3>
+        <p className="text-lg" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Inter', system-ui, sans-serif" }}>{currentTrack.artist}</p>
+        <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>{currentTrack.album}</p>
       </div>
 
       {/* Progress Bar */}
       <div className="mb-6">
-        <div className="relative h-2 bg-purple-900/50 rounded-full overflow-hidden">
+        <div className="relative h-2 rounded-full overflow-hidden" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
           <div
-            className="absolute h-full bg-gradient-to-r from-pink-500 via-purple-500 to-amber-500 rounded-full transition-all duration-300"
-            style={{ width: `${progress}%` }}
+            className="absolute h-full rounded-full transition-all duration-300"
+            style={{ backgroundColor: "#D4AF37", width: `${progress}%` }}
           />
         </div>
-        <div className="flex justify-between text-purple-300 text-xs mt-2">
+        <div className="flex justify-between text-xs mt-2" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>
           <span>{formatTime(currentTime)}</span>
           <span>{currentTrack.duration}</span>
         </div>
@@ -220,7 +220,8 @@ export default function MusicPlayer() {
       <div className="flex items-center justify-center gap-4 mb-6">
         <button
           onClick={() => setIsShuffled(!isShuffled)}
-          className={`p-2 rounded-lg transition-all ${isShuffled ? 'bg-purple-500 text-white' : 'text-purple-300 hover:bg-purple-800/50'}`}
+          className="p-2 rounded-lg transition-all"
+          style={{ backgroundColor: isShuffled ? "#D4AF37" : "rgba(255,255,255,0.06)", color: isShuffled ? "#0a0806" : "rgba(255,255,255,0.5)" }}
           title="Shuffle"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -230,7 +231,10 @@ export default function MusicPlayer() {
         
         <button
           onClick={playPrevious}
-          className="p-3 rounded-full bg-purple-800/50 text-purple-200 hover:bg-purple-700 transition-all"
+          className="p-3 rounded-full transition-all"
+          style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.7)" }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.1)"}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.06)"}
         >
           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
             <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
@@ -239,7 +243,10 @@ export default function MusicPlayer() {
         
         <button
           onClick={togglePlay}
-          className="p-5 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-amber-500 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+          className="p-5 rounded-full text-white shadow-lg transition-all duration-200"
+          style={{ backgroundColor: "#C23B3B" }}
+          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#a93232"; e.currentTarget.style.transform = "scale(1.05)"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#C23B3B"; e.currentTarget.style.transform = "scale(1)"; }}
         >
           {isPlaying ? (
             <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -254,7 +261,10 @@ export default function MusicPlayer() {
         
         <button
           onClick={playNext}
-          className="p-3 rounded-full bg-purple-800/50 text-purple-200 hover:bg-purple-700 transition-all"
+          className="p-3 rounded-full transition-all"
+          style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.7)" }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.1)"}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.06)"}
         >
           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
             <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
@@ -263,7 +273,8 @@ export default function MusicPlayer() {
         
         <button
           onClick={toggleRepeat}
-          className={`p-2 rounded-lg transition-all ${repeatMode !== 'off' ? 'bg-purple-500 text-white' : 'text-purple-300 hover:bg-purple-800/50'}`}
+          className="p-2 rounded-lg transition-all"
+          style={{ backgroundColor: repeatMode !== 'off' ? "#D4AF37" : "rgba(255,255,255,0.06)", color: repeatMode !== 'off' ? "#0a0806" : "rgba(255,255,255,0.5)" }}
           title={`Repeat: ${repeatMode}`}
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -275,7 +286,7 @@ export default function MusicPlayer() {
 
       {/* Volume Control */}
       <div className="flex items-center gap-3 mb-6">
-        <svg className="w-5 h-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5" style={{ color: "rgba(255,255,255,0.5)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
         </svg>
         <input
@@ -284,23 +295,24 @@ export default function MusicPlayer() {
           max="100"
           value={volume}
           onChange={(e) => setVolume(Number(e.target.value))}
-          className="flex-1 h-2 bg-purple-900/50 rounded-full appearance-none cursor-pointer accent-purple-500"
+          className="flex-1 h-2 rounded-full appearance-none cursor-pointer"
+          style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
         />
       </div>
 
       {/* Playlist */}
-      <div className="border-t border-purple-700/50 pt-4">
-        <h4 className="text-purple-300 font-semibold mb-3 text-sm uppercase tracking-wider">Playlist</h4>
+      <div className="pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+        <h4 className="font-semibold mb-3 text-sm uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Inter', system-ui, sans-serif" }}>Playlist</h4>
         <div className="space-y-2 max-h-48 overflow-y-auto">
           {tracks.map((track) => (
             <button
               key={track.id}
               onClick={() => handleTrackSelect(track)}
-              className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all ${
-                currentTrack.id === track.id
-                  ? 'bg-purple-600/50 border border-purple-400/50'
-                  : 'bg-purple-800/30 hover:bg-purple-700/50 border border-transparent'
-              }`}
+              className="w-full flex items-center gap-3 p-3 rounded-xl transition-all"
+              style={{
+                backgroundColor: currentTrack.id === track.id ? "rgba(212,175,55,0.15)" : "rgba(255,255,255,0.03)",
+                border: currentTrack.id === track.id ? "1px solid rgba(212,175,55,0.3)" : "1px solid transparent"
+              }}
             >
               {track.coverImage ? (
                 <img src={track.coverImage} alt={track.title} className="w-8 h-8 rounded object-cover" />
@@ -308,16 +320,16 @@ export default function MusicPlayer() {
                 <span className="text-2xl">{track.cover}</span>
               )}
               <div className="flex-1 text-left">
-                <p className={`font-medium ${currentTrack.id === track.id ? 'text-white' : 'text-purple-200'}`}>
+                <p className="font-medium" style={{ color: currentTrack.id === track.id ? "#F5F5F5" : "rgba(255,255,255,0.7)", fontFamily: "'Inter', system-ui, sans-serif" }}>
                   {track.title}
                 </p>
-                <p className="text-purple-400 text-sm">{track.artist}</p>
+                <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>{track.artist}</p>
               </div>
               {currentTrack.id === track.id && isPlaying && (
                 <div className="flex items-end gap-0.5 h-4">
-                  <div className="w-1 bg-amber-400 animate-pulse" style={{ height: '60%' }}></div>
-                  <div className="w-1 bg-purple-400 animate-pulse" style={{ height: '100%', animationDelay: '0.1s' }}></div>
-                  <div className="w-1 bg-red-400 animate-pulse" style={{ height: '40%', animationDelay: '0.2s' }}></div>
+                  <div className="w-1 animate-pulse" style={{ backgroundColor: "#D4AF37", height: '60%' }}></div>
+                  <div className="w-1 animate-pulse" style={{ backgroundColor: "#C23B3B", height: '100%', animationDelay: '0.1s' }}></div>
+                  <div className="w-1 animate-pulse" style={{ backgroundColor: "rgba(255,255,255,0.5)", height: '40%', animationDelay: '0.2s' }}></div>
                 </div>
               )}
             </button>

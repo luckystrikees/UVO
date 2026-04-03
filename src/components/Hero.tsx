@@ -1,69 +1,60 @@
 export default function Hero() {
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img
-          src="/hero-background.png"
-          alt=""
-          className="w-full h-full object-cover"
-          aria-hidden="true"
-        />
-        <div className="absolute inset-0 bg-slate-900/40" />
-      </div>
-      
-      {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        {/* Translucent backplate */}
-        <div className="inline-block p-8 md:p-12 rounded-3xl bg-black/5">
-          {/* Main heading */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-            <span className="block text-white">AUTISTIC</span>
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-amber-400 bg-clip-text text-transparent">
-              PRIDE
-            </span>
-          </h1>
+    <section className="relative h-screen min-h-[720px] flex items-center justify-center overflow-hidden">
 
-          {/* Subheading */}
-          <p className="text-xl md:text-2xl text-slate-200 leading-relaxed" style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700 }}>
-            Unapologetic sounds.
-            <span className="text-amber-400 font-semibold"> Loud, proud, and militant.</span>
-          </p>
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-center bg-cover"
+        style={{ backgroundImage: "url('/hero-background.png')" }}
+      />
+
+      {/* Overlay (contrast control) */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(10,8,6,0.65)_0%,rgba(10,8,6,0.25)_40%,rgba(10,8,6,0.25)_60%,rgba(10,8,6,0.75)_100%)]" />
+
+      {/* Content */}
+      <div className="relative z-10 text-center max-w-[900px] px-6">
+
+        {/* Label */}
+        <div className="text-[12px] tracking-[0.18em] uppercase text-white/60 mb-5" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+          Neurodiversity-Affirming Platform
         </div>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+        {/* Headline */}
+        <h1 className="text-[clamp(48px,6vw,72px)] leading-tight mb-4" style={{ fontFamily: "'Playfair Display', serif", fontWeight: 500, color: "#F5F5F5" }}>
+          Autistic Music
+        </h1>
+
+        {/* Subheading */}
+        <p className="text-[clamp(16px,1.5vw,20px)] mb-9" style={{ fontFamily: "'Inter', system-ui, sans-serif", color: "rgba(255,255,255,0.8)", letterSpacing: "0.02em" }}>
+          Unmasked. Structured. Precise.
+        </p>
+
+        {/* Actions */}
+        <div className="flex gap-4 justify-center flex-wrap">
+
+          {/* Primary Button */}
           <button
             onClick={() => document.querySelector('#music-player')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-amber-600 text-white font-bold rounded-full shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 hover:scale-105 transition-all duration-300"
+            className="px-7 py-3.5 rounded-full font-medium text-[15px] text-white transition-all duration-200"
+            style={{ backgroundColor: "#C23B3B" }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#a93232")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#C23B3B")}
           >
-            <span className="flex items-center gap-2">
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-              Start Listening
-            </span>
+            Start Listening
           </button>
 
+          {/* Secondary Button */}
           <button
             onClick={() => document.querySelector('#mission')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-bold rounded-full border-2 border-white/30 hover:bg-white/20 hover:border-white/50 transition-all duration-300"
+            className="border px-7 py-3.5 rounded-full font-medium text-[15px] transition-all duration-200"
+            style={{ borderColor: "rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.85)" }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}
           >
-            <span className="flex items-center gap-2">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              Join the Movement
-            </span>
+            Explore
           </button>
+
         </div>
-      </div>
-      
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <svg className="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
       </div>
     </section>
   );

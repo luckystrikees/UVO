@@ -13,15 +13,13 @@ const artists = [
 
 export default function ArtistShowcase() {
   return (
-    <section id="artists" className="py-16 px-4">
+    <section id="artists" className="py-16 px-4" style={{ backgroundColor: "rgba(10, 8, 6, 0.95)" }}>
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-amber-400 bg-clip-text text-transparent">
-              Featured Artists
-            </span>
+          <h2 className="text-4xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Playfair Display', serif", color: "#F5F5F5" }}>
+            <span>Featured Artists</span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Inter', system-ui, sans-serif" }}>
             Amplifying autistic voices through music. These artists are unapologetically proud and here to make some noise.
           </p>
         </div>
