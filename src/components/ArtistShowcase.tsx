@@ -6,7 +6,7 @@ const artists = [
     name: "Autismdecon",
     tagline: "La Logique au Pouvoir",
     description: "Powerful music that challenges neurotypical norms through logic and authentic expression. Autismdecon brings a unique voice to the autistic music scene.",
-    image: "/audio/la-logique-au-pouvoir.png",
+    image: "/audio/autismdecon.png",
     genre: "Autistic Music"
   },
   {
