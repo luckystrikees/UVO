@@ -23,13 +23,13 @@ export default function ArtistCard({ artist }: ArtistCardProps) {
     <div className="group relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl overflow-hidden border border-slate-700 hover:border-purple-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-1">
       {/* Decorative gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      
+
       {/* Artist Image */}
       <div className="relative h-48 overflow-hidden">
         {artist.image.startsWith('/') ? (
           <img src={artist.image} alt={artist.name} className="absolute inset-0 w-full h-full object-cover" />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-600 to-cyan-600 flex items-center justify-center">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-600 to-amber-600 flex items-center justify-center">
             <span className="text-7xl">{artist.image}</span>
           </div>
         )}
@@ -38,7 +38,7 @@ export default function ArtistCard({ artist }: ArtistCardProps) {
       
       {/* Content */}
       <div className="relative p-5">
-        <span className="inline-block px-3 py-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-semibold rounded-full mb-3">
+        <span className="inline-block px-3 py-1 bg-gradient-to-r from-purple-600 to-amber-600 text-white text-xs font-semibold rounded-full mb-3">
           {artist.genre}
         </span>
         

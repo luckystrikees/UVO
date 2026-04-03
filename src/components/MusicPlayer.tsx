@@ -190,7 +190,7 @@ export default function MusicPlayer() {
     <div className="bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 rounded-3xl p-6 shadow-2xl border border-purple-500/30">
       {/* Album Art & Current Track */}
       <div className="text-center mb-6">
-        <div className="inline-flex items-center justify-center w-48 h-48 rounded-2xl bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500 shadow-xl mb-4 overflow-hidden">
+        <div className="inline-flex items-center justify-center w-48 h-48 rounded-2xl bg-gradient-to-br from-pink-500 via-purple-500 to-amber-500 shadow-xl mb-4 overflow-hidden">
           {currentTrack.coverImage ? (
             <img src={currentTrack.coverImage} alt={currentTrack.title} className="w-full h-full object-cover" />
           ) : (
@@ -206,7 +206,7 @@ export default function MusicPlayer() {
       <div className="mb-6">
         <div className="relative h-2 bg-purple-900/50 rounded-full overflow-hidden">
           <div
-            className="absolute h-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 rounded-full transition-all duration-300"
+            className="absolute h-full bg-gradient-to-r from-pink-500 via-purple-500 to-amber-500 rounded-full transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -239,7 +239,7 @@ export default function MusicPlayer() {
         
         <button
           onClick={togglePlay}
-          className="p-5 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+          className="p-5 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-amber-500 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all"
         >
           {isPlaying ? (
             <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -315,9 +315,9 @@ export default function MusicPlayer() {
               </div>
               {currentTrack.id === track.id && isPlaying && (
                 <div className="flex items-end gap-0.5 h-4">
-                  <div className="w-1 bg-pink-400 animate-pulse" style={{ height: '60%' }}></div>
+                  <div className="w-1 bg-amber-400 animate-pulse" style={{ height: '60%' }}></div>
                   <div className="w-1 bg-purple-400 animate-pulse" style={{ height: '100%', animationDelay: '0.1s' }}></div>
-                  <div className="w-1 bg-cyan-400 animate-pulse" style={{ height: '40%', animationDelay: '0.2s' }}></div>
+                  <div className="w-1 bg-red-400 animate-pulse" style={{ height: '40%', animationDelay: '0.2s' }}></div>
                 </div>
               )}
             </button>
