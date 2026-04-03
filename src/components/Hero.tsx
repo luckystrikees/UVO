@@ -12,7 +12,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(10,8,6,0.65)_0%,rgba(10,8,6,0.25)_40%,rgba(10,8,6,0.25)_60%,rgba(10,8,6,0.75)_100%)]" />
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-[900px] px-6 -mt-[15vh]">
+      <div className="relative z-10 text-center max-w-[900px] px-6 -mt-[30vh]">
 
         {/* Label */}
         <div className="text-[12px] tracking-[0.18em] uppercase text-white/60 mb-5" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
@@ -30,7 +30,7 @@ export default function Hero() {
         </p>
 
         {/* Actions */}
-        <div className="flex gap-4 justify-center flex-wrap mt-[calc(3*3.5rem)]">
+        <div className="flex gap-4 justify-center flex-wrap mt-[calc(5*3.5rem)]">
 
           {/* Primary Button */}
           <button
