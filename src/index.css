@@ -12,17 +12,3 @@
     scroll-behavior: auto !important;
   }
 }
-
-/* Text outline for hero heading */
-.hero-text-outline {
-  text-shadow:
-    -2px -2px 0 #000,
-    2px -2px 0 #000,
-    -2px 2px 0 #000,
-    2px 2px 0 #000,
-    0 2px 0 #000,
-    0 -2px 0 #000,
-    2px 0 0 #000,
-    -2px 0 0 #000,
-    0 4px 8px rgba(0, 0, 0, 0.5);
-}

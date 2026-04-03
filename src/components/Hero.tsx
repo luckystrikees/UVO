@@ -14,22 +14,25 @@ export default function Hero() {
       
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        {/* Main heading */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-tight hero-text-outline" style={{ fontFamily: "'Playfair Display', serif" }}>
-          <span className="block">AUTISTIC</span>
-          <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-amber-400 bg-clip-text text-transparent">
-            PRIDE
-          </span>
-        </h1>
-        
-        {/* Subheading */}
-        <p className="text-xl md:text-2xl text-slate-200 mb-8 max-w-3xl mx-auto leading-relaxed hero-text-outline" style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700 }}>
-          Unapologetic sounds.
-          <span className="text-amber-400 font-semibold"> Loud, proud, and militant.</span>
-        </p>
-        
+        {/* Translucent backplate */}
+        <div className="inline-block p-8 md:p-12 rounded-3xl bg-slate-900/60 backdrop-blur-md border border-white/10">
+          {/* Main heading */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <span className="block text-white">AUTISTIC</span>
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-amber-400 bg-clip-text text-transparent">
+              PRIDE
+            </span>
+          </h1>
+
+          {/* Subheading */}
+          <p className="text-xl md:text-2xl text-slate-200 leading-relaxed" style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700 }}>
+            Unapologetic sounds.
+            <span className="text-amber-400 font-semibold"> Loud, proud, and militant.</span>
+          </p>
+        </div>
+
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
           <button
             onClick={() => document.querySelector('#music-player')?.scrollIntoView({ behavior: 'smooth' })}
             className="group px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-amber-600 text-white font-bold rounded-full shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 hover:scale-105 transition-all duration-300"
