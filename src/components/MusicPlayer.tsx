@@ -31,6 +31,16 @@ const tracks: Track[] = [
     cover: "🎵",
     coverImage: "/audio/la-logique-au-pouvoir.png",
     audioSrc: "/audio/la-logique-au-pouvoir.mp3"
+  },
+  {
+    id: 8,
+    title: "Deux Miroirs",
+    artist: "Autismdecon",
+    album: "La Logique au Pouvoir",
+    duration: "0:00",
+    cover: "🎵",
+    coverImage: "/audio/deux-miroirs.png",
+    audioSrc: "/audio/deux-miroirs.mp3"
   }
   // ADD NEW SONGS HERE - Copy this format:
   // {

@@ -53,6 +53,11 @@ export default function FeaturedTrack() {
                 <span className="flex-1" style={{ color: "#F5F5F5", fontFamily: "'Inter', system-ui, sans-serif" }}>La Logique au Pouvoir</span>
                 <span className="text-sm" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>La Logique au Pouvoir</span>
               </div>
+              <div className="flex items-center gap-3 p-3 rounded-lg" style={{ backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                <span className="font-mono text-sm" style={{ color: "#D4AF37" }}>03</span>
+                <span className="flex-1" style={{ color: "#F5F5F5", fontFamily: "'Inter', system-ui, sans-serif" }}>Deux Miroirs</span>
+                <span className="text-sm" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>La Logique au Pouvoir</span>
+              </div>
             </div>
 
             {/* Play button */}
