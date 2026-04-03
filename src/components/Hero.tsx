@@ -30,35 +30,31 @@ export default function Hero() {
           Unmasked. Structured. Precise.
         </p>
 
-        {/* Actions with local contrast backplate */}
-        <div className="flex justify-center">
-          <div className="bg-black/40 backdrop-blur-sm px-4 py-3 rounded-full">
-            <div className="flex gap-4 flex-wrap justify-center">
+        {/* Actions */}
+        <div className="flex gap-4 justify-center flex-wrap">
 
-              {/* Primary Button */}
-              <button
-                onClick={() => document.querySelector('#music-player')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-7 py-3.5 rounded-full font-medium text-[15px] text-white transition-all duration-200"
-                style={{ backgroundColor: "#C23B3B" }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#a93232")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#C23B3B")}
-              >
-                Start Listening
-              </button>
+          {/* Primary Button */}
+          <button
+            onClick={() => document.querySelector('#music-player')?.scrollIntoView({ behavior: 'smooth' })}
+            className="px-7 py-3.5 rounded-full font-medium text-[15px] text-white transition-all duration-200"
+            style={{ backgroundColor: "#C23B3B" }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#a93232")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#C23B3B")}
+          >
+            Start Listening
+          </button>
 
-              {/* Secondary Button - strengthened */}
-              <button
-                onClick={() => document.querySelector('#mission')?.scrollIntoView({ behavior: 'smooth' })}
-                className="border px-7 py-3.5 rounded-full font-medium text-[15px] transition-all duration-200"
-                style={{ borderColor: "rgba(255,255,255,0.4)", color: "rgba(255,255,255,0.9)", backgroundColor: "rgba(0,0,0,0.15)" }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.6)"; e.currentTarget.style.color = "#fff"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; e.currentTarget.style.color = "rgba(255,255,255,0.9)"; }}
-              >
-                Explore
-              </button>
+          {/* Secondary Button - strengthened */}
+          <button
+            onClick={() => document.querySelector('#mission')?.scrollIntoView({ behavior: 'smooth' })}
+            className="border px-7 py-3.5 rounded-full font-medium text-[15px] transition-all duration-200"
+            style={{ borderColor: "rgba(255,255,255,0.4)", color: "rgba(255,255,255,0.9)", backgroundColor: "rgba(0,0,0,0.15)" }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.6)"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; e.currentTarget.style.color = "rgba(255,255,255,0.9)"; }}
+          >
+            Explore
+          </button>
 
-            </div>
-          </div>
         </div>
       </div>
     </section>
