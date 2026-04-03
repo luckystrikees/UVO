@@ -13,51 +13,6 @@ interface Track {
 
 const tracks: Track[] = [
   {
-    id: 1,
-    title: "Neurodivergent Anthem",
-    artist: "The Spectrum Rebels",
-    album: "Unmask the System",
-    duration: "3:45",
-    cover: "🎸",
-    audioSrc: "/audio/the-spectrum-rebels-neurodivergent-anthem.mp3"
-  },
-  {
-    id: 2,
-    title: "Stimming Is Resistance",
-    artist: "Echo Chamber",
-    album: "Sensory Revolution",
-    duration: "4:12",
-    cover: "🎹",
-    audioSrc: "/audio/echo-chamber-stimming-is-resistance.mp3"
-  },
-  {
-    id: 3,
-    title: "No More Camouflaging",
-    artist: "Raw & Unfiltered",
-    album: "Authentic Existence",
-    duration: "3:28",
-    cover: "🎤",
-    audioSrc: "/audio/raw-unfiltered-no-more-camouflaging.mp3"
-  },
-  {
-    id: 4,
-    title: "Special Interests Save Lives",
-    artist: "The Monotropes",
-    album: "Deep Dive",
-    duration: "5:01",
-    cover: "🎧",
-    audioSrc: "/audio/the-monotropes-special-interests-save-lives.mp3"
-  },
-  {
-    id: 5,
-    title: "Sensory Overload Symphony",
-    artist: "Chaos Theory",
-    album: "Too Much Too Loud",
-    duration: "4:33",
-    cover: "🎻",
-    audioSrc: "/audio/chaos-theory-sensory-overload-symphony.mp3"
-  },
-  {
     id: 6,
     title: "19.12 Precises",
     artist: "Autismdecon",
