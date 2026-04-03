@@ -19,9 +19,13 @@ export default function ArtistCard({ artist }: ArtistCardProps) {
       
       {/* Artist Image */}
       <div className="relative h-48 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-600 to-cyan-600 flex items-center justify-center">
-          <span className="text-7xl">{artist.image}</span>
-        </div>
+        {artist.image.startsWith('/') ? (
+          <img src={artist.image} alt={artist.name} className="absolute inset-0 w-full h-full object-cover" />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-600 to-cyan-600 flex items-center justify-center">
+            <span className="text-7xl">{artist.image}</span>
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
       </div>
       

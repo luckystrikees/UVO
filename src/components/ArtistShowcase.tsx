@@ -3,11 +3,11 @@ import ArtistCard from './ArtistCard';
 const artists = [
   {
     id: 1,
-    name: "The Spectrum Rebels",
-    tagline: "Punk Rock for the Neurodivergent",
-    description: "Raw, unfiltered punk anthems that scream our truth. We're here to dismantle the ableist system one power chord at a time.",
-    image: "🤘",
-    genre: "Punk Rock"
+    name: "Autismdecon",
+    tagline: "La Logique au Pouvoir",
+    description: "Powerful music that challenges neurotypical norms through logic and authentic expression. Autismdecon brings a unique voice to the autistic music scene.",
+    image: "/audio/la-logique-au-pouvoir.png",
+    genre: "Autistic Music"
   },
   {
     id: 2,
