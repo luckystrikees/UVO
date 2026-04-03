@@ -15,7 +15,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
         {/* Translucent backplate */}
-        <div className="inline-block p-8 md:p-12 rounded-3xl bg-slate-900/60 backdrop-blur-md border border-white/10">
+        <div className="inline-block p-8 md:p-12 rounded-3xl bg-black/20 backdrop-blur-sm">
           {/* Main heading */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
             <span className="block text-white">AUTISTIC</span>
