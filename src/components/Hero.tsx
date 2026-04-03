@@ -13,7 +13,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(10,8,6,0.65)_0%,rgba(10,8,6,0.25)_30%,rgba(10,8,6,0.40)_55%,rgba(10,8,6,0.80)_100%)]" />
 
       {/* Content - positioned in upper safe zone, away from infinity symbol */}
-      <div className="relative z-10 text-center max-w-[900px] px-6 mx-auto" style={{ paddingTop: 'clamp(80px, 18vh, 180px)' }}>
+      <div className="relative z-10 text-center max-w-[900px] px-6 mx-auto" style={{ paddingTop: '90px' }}>
 
         {/* Label */}
         <div className="text-[12px] tracking-[0.18em] uppercase text-white/60 mb-5" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
