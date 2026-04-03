@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 interface Track {
   id: number;
@@ -6,7 +6,9 @@ interface Track {
   artist: string;
   album: string;
   duration: string;
-  cover: string;
+  cover: string; // Emoji fallback or image URL
+  audioSrc: string; // Path to audio file: '/audio/filename.mp3'
+  coverImage?: string; // Optional: Path to cover image
 }
 
 const tracks: Track[] = [
@@ -16,7 +18,8 @@ const tracks: Track[] = [
     artist: "The Spectrum Rebels",
     album: "Unmask the System",
     duration: "3:45",
-    cover: "🎸"
+    cover: "🎸",
+    audioSrc: "/audio/the-spectrum-rebels-neurodivergent-anthem.mp3"
   },
   {
     id: 2,
@@ -24,7 +27,8 @@ const tracks: Track[] = [
     artist: "Echo Chamber",
     album: "Sensory Revolution",
     duration: "4:12",
-    cover: "🎹"
+    cover: "🎹",
+    audioSrc: "/audio/echo-chamber-stimming-is-resistance.mp3"
   },
   {
     id: 3,
@@ -32,7 +36,8 @@ const tracks: Track[] = [
     artist: "Raw & Unfiltered",
     album: "Authentic Existence",
     duration: "3:28",
-    cover: "🎤"
+    cover: "🎤",
+    audioSrc: "/audio/raw-unfiltered-no-more-camouflaging.mp3"
   },
   {
     id: 4,
@@ -40,7 +45,8 @@ const tracks: Track[] = [
     artist: "The Monotropes",
     album: "Deep Dive",
     duration: "5:01",
-    cover: "🎧"
+    cover: "🎧",
+    audioSrc: "/audio/the-monotropes-special-interests-save-lives.mp3"
   },
   {
     id: 5,
@@ -48,8 +54,29 @@ const tracks: Track[] = [
     artist: "Chaos Theory",
     album: "Too Much Too Loud",
     duration: "4:33",
-    cover: "🎻"
+    cover: "🎻",
+    audioSrc: "/audio/chaos-theory-sensory-overload-symphony.mp3"
+  },
+  {
+    id: 6,
+    title: "19.12 Precises",
+    artist: "Unknown Artist",
+    album: "Unknown Album",
+    duration: "0:00",
+    cover: "🎵",
+    coverImage: "/audio/19-12-precises.png",
+    audioSrc: "/audio/19-12-precises.mp3"
   }
+  // ADD NEW SONGS HERE - Copy this format:
+  // {
+  //   id: 6,
+  //   title: "Your Song Title",
+  //   artist: "Artist Name",
+  //   album: "Album Name",
+  //   duration: "3:30",
+  //   cover: "🎵",  // Emoji or you can use image URL
+  //   audioSrc: "/audio/your-file.mp3"
+  // }
 ];
 
 export default function MusicPlayer() {
@@ -59,32 +86,86 @@ export default function MusicPlayer() {
   const [volume, setVolume] = useState(75);
   const [isShuffled, setIsShuffled] = useState(false);
   const [repeatMode, setRepeatMode] = useState<'off' | 'all' | 'one'>('off');
-  
+  const [currentTime, setCurrentTime] = useState(0);
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressInterval = useRef<NodeJS.Timeout | null>(null);
 
+  // Initialize audio element
   useEffect(() => {
-    if (isPlaying) {
-      progressInterval.current = setInterval(() => {
-        setProgress(prev => {
-          if (prev >= 100) {
-            if (repeatMode === 'one') {
-              return 0;
-            }
-            playNext();
-            return 0;
-          }
-          return prev + 1;
-        });
-      }, 1000);
-    } else if (progressInterval.current) {
-      clearInterval(progressInterval.current);
-    }
+    audioRef.current = new Audio();
+    audioRef.current.volume = volume / 100;
+
     return () => {
-      if (progressInterval.current) {
-        clearInterval(progressInterval.current);
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
       }
     };
-  }, [isPlaying, repeatMode]);
+  }, []);
+
+  // Update audio source when track changes
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.src = currentTrack.audioSrc;
+      audioRef.current.load();
+      if (isPlaying) {
+        audioRef.current.play().catch(() => setIsPlaying(false));
+      }
+    }
+  }, [currentTrack]);
+
+  // Handle play/pause
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.play().catch(() => setIsPlaying(false));
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
+
+  // Update progress based on audio playback
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    const updateProgress = () => {
+      if (audioRef.current && audioRef.current.duration) {
+        const progressPercent = (audioRef.current.currentTime / audioRef.current.duration) * 100;
+        setProgress(progressPercent);
+        setCurrentTime(audioRef.current.currentTime);
+      }
+    };
+
+    audioRef.current.addEventListener('timeupdate', updateProgress);
+    audioRef.current.addEventListener('ended', () => {
+      if (repeatMode === 'one') {
+        audioRef.current!.currentTime = 0;
+        audioRef.current!.play();
+      } else {
+        playNext();
+      }
+    });
+
+    return () => {
+      audioRef.current?.removeEventListener('timeupdate', updateProgress);
+    };
+  }, [repeatMode, currentTrack]);
+
+  // Handle volume changes
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume / 100;
+    }
+  }, [volume]);
+
+  // Format time helper
+  const formatTime = (seconds: number): string => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
 
   const playNext = () => {
     const currentIndex = tracks.findIndex(t => t.id === currentTrack.id);
@@ -128,8 +209,12 @@ export default function MusicPlayer() {
     <div className="bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 rounded-3xl p-6 shadow-2xl border border-purple-500/30">
       {/* Album Art & Current Track */}
       <div className="text-center mb-6">
-        <div className="inline-flex items-center justify-center w-48 h-48 rounded-2xl bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500 shadow-xl mb-4 animate-pulse">
-          <span className="text-8xl">{currentTrack.cover}</span>
+        <div className="inline-flex items-center justify-center w-48 h-48 rounded-2xl bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500 shadow-xl mb-4 overflow-hidden">
+          {currentTrack.coverImage ? (
+            <img src={currentTrack.coverImage} alt={currentTrack.title} className="w-full h-full object-cover" />
+          ) : (
+            <span className="text-8xl">{currentTrack.cover}</span>
+          )}
         </div>
         <h3 className="text-2xl font-bold text-white mb-1">{currentTrack.title}</h3>
         <p className="text-purple-300 text-lg">{currentTrack.artist}</p>
@@ -139,13 +224,13 @@ export default function MusicPlayer() {
       {/* Progress Bar */}
       <div className="mb-6">
         <div className="relative h-2 bg-purple-900/50 rounded-full overflow-hidden">
-          <div 
+          <div
             className="absolute h-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 rounded-full transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
         <div className="flex justify-between text-purple-300 text-xs mt-2">
-          <span>{Math.floor(progress / 100 * 225)}s</span>
+          <span>{formatTime(currentTime)}</span>
           <span>{currentTrack.duration}</span>
         </div>
       </div>
@@ -236,7 +321,11 @@ export default function MusicPlayer() {
                   : 'bg-purple-800/30 hover:bg-purple-700/50 border border-transparent'
               }`}
             >
-              <span className="text-2xl">{track.cover}</span>
+              {track.coverImage ? (
+                <img src={track.coverImage} alt={track.title} className="w-8 h-8 rounded object-cover" />
+              ) : (
+                <span className="text-2xl">{track.cover}</span>
+              )}
               <div className="flex-1 text-left">
                 <p className={`font-medium ${currentTrack.id === track.id ? 'text-white' : 'text-purple-200'}`}>
                   {track.title}
