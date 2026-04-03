@@ -1,19 +1,19 @@
 export default function Hero() {
   return (
     <section
-      className="relative h-screen min-h-[720px] flex items-start md:items-center pt-28 md:pt-0 overflow-hidden"
+      className="relative h-screen min-h-[720px] flex items-start overflow-hidden"
       style={{
         backgroundImage: "url('/hero-background.png')",
-        backgroundPosition: 'center 60%',
+        backgroundPosition: 'center 65%',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat'
       }}
     >
       {/* Overlay (contrast control with reinforced lower band) */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(10,8,6,0.65)_0%,rgba(10,8,6,0.25)_35%,rgba(10,8,6,0.35)_60%,rgba(10,8,6,0.75)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(10,8,6,0.65)_0%,rgba(10,8,6,0.25)_30%,rgba(10,8,6,0.40)_55%,rgba(10,8,6,0.80)_100%)]" />
 
-      {/* Content - biased upward, not truly centered */}
-      <div className="relative z-10 text-center max-w-[900px] px-6 mx-auto -translate-y-[8vh]">
+      {/* Content - positioned in upper safe zone, away from infinity symbol */}
+      <div className="relative z-10 text-center max-w-[900px] px-6 mx-auto" style={{ paddingTop: 'clamp(80px, 18vh, 180px)' }}>
 
         {/* Label */}
         <div className="text-[12px] tracking-[0.18em] uppercase text-white/60 mb-5" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
@@ -31,8 +31,8 @@ export default function Hero() {
         </p>
 
         {/* Actions with local contrast backplate */}
-        <div className="mt-9 flex justify-center">
-          <div className="bg-black/30 backdrop-blur-sm px-4 py-3 rounded-full">
+        <div className="flex justify-center">
+          <div className="bg-black/40 backdrop-blur-sm px-4 py-3 rounded-full">
             <div className="flex gap-4 flex-wrap justify-center">
 
               {/* Primary Button */}
