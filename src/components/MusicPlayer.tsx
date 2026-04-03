@@ -41,6 +41,16 @@ const tracks: Track[] = [
     cover: "🎵",
     coverImage: "/audio/deux-miroirs.png",
     audioSrc: "/audio/deux-miroirs.mp3"
+  },
+  {
+    id: 9,
+    title: "Se du Vent",
+    artist: "Autismdecon",
+    album: "La Logique au Pouvoir",
+    duration: "0:00",
+    cover: "🎵",
+    coverImage: "/audio/se-du-vent.png",
+    audioSrc: "/audio/se-du-vent.mp3"
   }
   // ADD NEW SONGS HERE - Copy this format:
   // {
