@@ -1,18 +1,19 @@
 export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[720px] flex items-center justify-center overflow-hidden">
+    <section
+      className="relative h-screen min-h-[720px] flex items-start md:items-center pt-28 md:pt-0 overflow-hidden"
+      style={{
+        backgroundImage: "url('/hero-background.png')",
+        backgroundPosition: 'center 60%',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Overlay (contrast control with reinforced lower band) */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(10,8,6,0.65)_0%,rgba(10,8,6,0.25)_35%,rgba(10,8,6,0.35)_60%,rgba(10,8,6,0.75)_100%)]" />
 
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-center bg-cover"
-        style={{ backgroundImage: "url('/hero-background.png')" }}
-      />
-
-      {/* Overlay (contrast control) */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(10,8,6,0.65)_0%,rgba(10,8,6,0.25)_40%,rgba(10,8,6,0.25)_60%,rgba(10,8,6,0.75)_100%)]" />
-
-      {/* Content */}
-      <div className="relative z-10 text-center max-w-[900px] px-6 -mt-[43vh]">
+      {/* Content - biased upward, not truly centered */}
+      <div className="relative z-10 text-center max-w-[900px] px-6 mx-auto -translate-y-[8vh]">
 
         {/* Label */}
         <div className="text-[12px] tracking-[0.18em] uppercase text-white/60 mb-5" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
@@ -29,31 +30,35 @@ export default function Hero() {
           Unmasked. Structured. Precise.
         </p>
 
-        {/* Actions */}
-        <div className="flex gap-4 justify-center flex-wrap mt-[60px]">
+        {/* Actions with local contrast backplate */}
+        <div className="mt-9 flex justify-center">
+          <div className="bg-black/30 backdrop-blur-sm px-4 py-3 rounded-full">
+            <div className="flex gap-4 flex-wrap justify-center">
 
-          {/* Primary Button */}
-          <button
-            onClick={() => document.querySelector('#music-player')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-7 py-3.5 rounded-full font-medium text-[15px] text-white transition-all duration-200"
-            style={{ backgroundColor: "#C23B3B" }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#a93232")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#C23B3B")}
-          >
-            Start Listening
-          </button>
+              {/* Primary Button */}
+              <button
+                onClick={() => document.querySelector('#music-player')?.scrollIntoView({ behavior: 'smooth' })}
+                className="px-7 py-3.5 rounded-full font-medium text-[15px] text-white transition-all duration-200"
+                style={{ backgroundColor: "#C23B3B" }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#a93232")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#C23B3B")}
+              >
+                Start Listening
+              </button>
 
-          {/* Secondary Button */}
-          <button
-            onClick={() => document.querySelector('#mission')?.scrollIntoView({ behavior: 'smooth' })}
-            className="border px-7 py-3.5 rounded-full font-medium text-[15px] transition-all duration-200"
-            style={{ borderColor: "rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.85)" }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}
-          >
-            Explore
-          </button>
+              {/* Secondary Button - strengthened */}
+              <button
+                onClick={() => document.querySelector('#mission')?.scrollIntoView({ behavior: 'smooth' })}
+                className="border px-7 py-3.5 rounded-full font-medium text-[15px] transition-all duration-200"
+                style={{ borderColor: "rgba(255,255,255,0.4)", color: "rgba(255,255,255,0.9)", backgroundColor: "rgba(0,0,0,0.15)" }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.6)"; e.currentTarget.style.color = "#fff"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; e.currentTarget.style.color = "rgba(255,255,255,0.9)"; }}
+              >
+                Explore
+              </button>
 
+            </div>
+          </div>
         </div>
       </div>
     </section>
