@@ -15,7 +15,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
         {/* Main heading */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-tight">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-tight hero-text-outline" style={{ fontFamily: "'Playfair Display', serif" }}>
           <span className="block">AUTISTIC</span>
           <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-amber-400 bg-clip-text text-transparent">
             PRIDE
@@ -23,7 +23,7 @@ export default function Hero() {
         </h1>
         
         {/* Subheading */}
-        <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl text-slate-200 mb-8 max-w-3xl mx-auto leading-relaxed hero-text-outline" style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700 }}>
           Unapologetic sounds.
           <span className="text-amber-400 font-semibold"> Loud, proud, and militant.</span>
         </p>
@@ -53,22 +53,6 @@ export default function Hero() {
               Join the Movement
             </span>
           </button>
-        </div>
-        
-        {/* Stats */}
-        <div className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-black text-white mb-1">100+</div>
-            <div className="text-slate-400 text-sm">Artists</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-black text-white mb-1">500+</div>
-            <div className="text-slate-400 text-sm">Tracks</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-black text-white mb-1">∞</div>
-            <div className="text-slate-400 text-sm">Pride</div>
-          </div>
         </div>
       </div>
       

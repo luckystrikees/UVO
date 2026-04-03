@@ -35,14 +35,14 @@ export default function App() {
           </svg>
         </div>
         <FeaturedTrack />
+        <ArtistShowcase />
         {/* Wave divider */}
-        <div className="relative h-16 overflow-hidden rotate-180">
+        <div className="relative h-16 overflow-hidden">
           <svg className="absolute bottom-0 w-full h-16" viewBox="0 0 1440 64" preserveAspectRatio="none">
             <path d="M0,32 C360,64 720,0 1080,32 C1260,48 1380,48 1440,32 L1440,64 L0,64 Z" fill="rgb(30 27 75)" />
           </svg>
         </div>
         <MissionStatement />
-        <ArtistShowcase />
         <div id="music-player" className="max-w-4xl mx-auto p-4">
           <MusicPlayer />
         </div>

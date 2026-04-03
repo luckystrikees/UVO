@@ -8,46 +8,6 @@ const artists = [
     description: "Powerful music that challenges neurotypical norms through logic and authentic expression. Autismdecon brings a unique voice to the autistic music scene.",
     image: "/audio/autismdecon.png",
     genre: "Autistic Music"
-  },
-  {
-    id: 2,
-    name: "Echo Chamber",
-    tagline: "Electronic Sounds of Stimming",
-    description: "Bass-heavy electronic beats that celebrate repetitive movements. Stimming isn't a symptom—it's resistance.",
-    image: "🎧",
-    genre: "Electronic"
-  },
-  {
-    id: 3,
-    name: "Raw & Unfiltered",
-    tagline: "Indie Folk Authenticity",
-    description: "Acoustic storytelling about masking, burnout, and the journey to embracing our authentic autistic selves.",
-    image: "🎸",
-    genre: "Indie Folk"
-  },
-  {
-    id: 4,
-    name: "The Monotropes",
-    tagline: "Progressive Rock Deep Dives",
-    description: "Complex compositions inspired by special interests. Our music goes deep, just like we do.",
-    image: "🎹",
-    genre: "Progressive Rock"
-  },
-  {
-    id: 5,
-    name: "Chaos Theory",
-    tagline: "Experimental Sensory Soundscapes",
-    description: "Pushing boundaries with sounds that mirror sensory experiences. Loud, intense, and gloriously overwhelming.",
-    image: "🔊",
-    genre: "Experimental"
-  },
-  {
-    id: 6,
-    name: "Neuroqueer Collective",
-    tagline: "Hip-Hop with Attitude",
-    description: "Hard-hitting beats and lyrics that challenge neurotypical norms. We're autistic, we're queer, we're unstoppable.",
-    image: "🎤",
-    genre: "Hip-Hop"
   }
 ];
 
