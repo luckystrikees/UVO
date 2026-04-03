@@ -12,6 +12,13 @@ interface ArtistCardProps {
 }
 
 export default function ArtistCard({ artist }: ArtistCardProps) {
+  const handlePlay = () => {
+    // Dispatch custom event to trigger playback in MusicPlayer
+    window.dispatchEvent(new CustomEvent('playArtist', { detail: artist.name }));
+    // Scroll to music player
+    document.querySelector('#music-player')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="group relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl overflow-hidden border border-slate-700 hover:border-purple-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-1">
       {/* Decorative gradient overlay */}
@@ -46,7 +53,10 @@ export default function ArtistCard({ artist }: ArtistCardProps) {
         </p>
         
         {/* Play button overlay */}
-        <button className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white/20 hover:scale-110">
+        <button
+          onClick={handlePlay}
+          className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white/20 hover:scale-110"
+        >
           <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z" />
           </svg>

@@ -56,6 +56,22 @@ export default function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressInterval = useRef<NodeJS.Timeout | null>(null);
 
+  // Listen for play-from-artist-card events
+  useEffect(() => {
+    const handlePlayArtist = (e: CustomEvent<string>) => {
+      const artistName = e.detail;
+      const firstTrack = tracks.find(t => t.artist === artistName);
+      if (firstTrack) {
+        setCurrentTrack(firstTrack);
+        setProgress(0);
+        setIsPlaying(true);
+      }
+    };
+
+    window.addEventListener('playArtist', handlePlayArtist as EventListener);
+    return () => window.removeEventListener('playArtist', handlePlayArtist as EventListener);
+  }, []);
+
   // Initialize audio element
   useEffect(() => {
     audioRef.current = new Audio();
