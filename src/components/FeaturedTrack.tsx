@@ -38,7 +38,7 @@ export default function FeaturedTrack() {
               Now Available
             </h3>
             <p className="text-lg mb-6 leading-relaxed" style={{ color: "rgba(255,255,255,0.7)", fontFamily: "'Inter', system-ui, sans-serif" }}>
-              Autismdecon brings a powerful voice to the autistic music scene with music that challenges neurotypical norms through logic and authentic expression.
+              Autismdecon is driven by message, not just voice. The music is a definitive refusal to accept the flawed, radical pathology of autism. It doesn't waste time trying to prove or disprove anything to the neurotypical world; instead, it operates entirely from an autistic baseline as the logical default. Every song is fiercely autistic-centric, giving an entirely new meaning to unapologetic.
             </p>
 
             {/* Track listing */}
