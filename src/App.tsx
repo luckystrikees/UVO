@@ -6,7 +6,7 @@ import FeaturedTrack from './components/FeaturedTrack';
 
 export default function App() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#0a0806" }}>
+    <div className="flex flex-col" style={{ height: '100vh', overflow: 'hidden', backgroundColor: '#0a0806' }}>
       {/* Navigation Bar */}
       <nav className="fixed top-0 left-0 right-0 z-50" style={{ background: "rgba(10, 8, 6, 0.6)", backdropFilter: "blur(8px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -25,8 +25,8 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Main Content */}
-      <main className="pt-20">
+      {/* Main Content Area (Scrollable) */}
+      <main className="flex-1 overflow-y-auto pt-20">
         <Hero />
         {/* Wave divider */}
         <div className="relative h-16 overflow-hidden">
@@ -36,9 +36,6 @@ export default function App() {
         </div>
         <FeaturedTrack />
         <ArtistShowcase />
-        <div id="music-player" className="max-w-4xl mx-auto p-4">
-          <MusicPlayer />
-        </div>
         {/* Wave divider */}
         <div className="relative h-16 overflow-hidden">
           <svg className="absolute bottom-0 w-full h-16" viewBox="0 0 1440 64" preserveAspectRatio="none">
@@ -48,13 +45,16 @@ export default function App() {
         <MissionStatement />
       </main>
 
+      {/* Bottom-Docked Player */}
+      <MusicPlayer />
+
       {/* Footer */}
-      <footer className="border-t mt-16" style={{ borderColor: "rgba(255,255,255,0.08)", backgroundColor: "rgba(10, 8, 6, 0.5)" }}>
+      <footer className="border-t" style={{ borderColor: "rgba(255,255,255,0.08)", backgroundColor: "rgba(10, 8, 6, 0.5)" }}>
         <div className="max-w-4xl mx-auto py-12 px-4 text-center">
           <p className="mb-6" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Inter', system-ui, sans-serif" }}>
             This platform was built with passion by and for the autistic community.
           </p>
-          
+
           {/* Social links */}
           <div className="flex justify-center gap-6 mb-6">
             <a

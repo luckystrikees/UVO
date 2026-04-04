@@ -41,28 +41,30 @@ export default function FeaturedTrack() {
               Autismdecon is driven by message, not just voice. The music is a definitive refusal to accept the flawed, radical pathology of autism. It doesn't waste time trying to prove or disprove anything to the neurotypical world; instead, it operates entirely from an autistic baseline as the logical default. Every song is fiercely autistic-centric, giving an entirely new meaning to unapologetic.
             </p>
 
-            {/* Track listing */}
-            <div className="space-y-3 mb-8">
-              <div className="flex items-center gap-3 p-3 rounded-lg" style={{ backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                <span className="font-mono text-sm" style={{ color: "#D4AF37" }}>01</span>
-                <span className="flex-1" style={{ color: "#F5F5F5", fontFamily: "'Inter', system-ui, sans-serif" }}>19.12 Precises</span>
-                <span className="text-sm" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>La Logique au Pouvoir</span>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-lg" style={{ backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                <span className="font-mono text-sm" style={{ color: "#D4AF37" }}>02</span>
-                <span className="flex-1" style={{ color: "#F5F5F5", fontFamily: "'Inter', system-ui, sans-serif" }}>La Logique au Pouvoir</span>
-                <span className="text-sm" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>La Logique au Pouvoir</span>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-lg" style={{ backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                <span className="font-mono text-sm" style={{ color: "#D4AF37" }}>03</span>
-                <span className="flex-1" style={{ color: "#F5F5F5", fontFamily: "'Inter', system-ui, sans-serif" }}>Deux Miroirs</span>
-                <span className="text-sm" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>La Logique au Pouvoir</span>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-lg" style={{ backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                <span className="font-mono text-sm" style={{ color: "#D4AF37" }}>04</span>
-                <span className="flex-1" style={{ color: "#F5F5F5", fontFamily: "'Inter', system-ui, sans-serif" }}>Se du Vent</span>
-                <span className="text-sm" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>La Logique au Pouvoir</span>
-              </div>
+            {/* Track listing - Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+              {[
+                { num: '01', title: '19.12 Precises', album: 'La Logique au Pouvoir' },
+                { num: '02', title: 'La Logique au Pouvoir', album: 'La Logique au Pouvoir' },
+                { num: '03', title: 'Deux Miroirs', album: 'La Logique au Pouvoir' },
+                { num: '04', title: 'Se du Vent', album: 'La Logique au Pouvoir' }
+              ].map((track) => (
+                <button
+                  key={track.num}
+                  onClick={() => {
+                    window.dispatchEvent(new CustomEvent('playArtist', { detail: 'Autismdecon' }));
+                    document.querySelector('#music-player')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="flex flex-col items-start text-left"
+                >
+                  <div className="w-full mb-2" style={{ aspectRatio: '1/1', backgroundColor: 'rgba(212,175,55,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span className="text-2xl font-mono" style={{ color: '#D4AF37' }}>{track.num}</span>
+                  </div>
+                  <div className="flex w-full justify-between items-baseline">
+                    <p className="text-sm font-medium truncate" style={{ color: '#F5F5F5', fontFamily: "'Inter', system-ui, sans-serif" }}>{track.title}</p>
+                  </div>
+                </button>
+              ))}
             </div>
 
             {/* Play button */}

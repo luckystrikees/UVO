@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface Track {
   id: number;
@@ -6,9 +6,9 @@ interface Track {
   artist: string;
   album: string;
   duration: string;
-  cover: string; // Emoji fallback or image URL
-  audioSrc: string; // Path to audio file: '/audio/filename.mp3'
-  coverImage?: string; // Optional: Path to cover image
+  cover: string;
+  audioSrc: string;
+  coverImage?: string;
 }
 
 const tracks: Track[] = [
@@ -52,16 +52,6 @@ const tracks: Track[] = [
     coverImage: "/audio/se-du-vent.png",
     audioSrc: "/audio/se-du-vent.mp3"
   }
-  // ADD NEW SONGS HERE - Copy this format:
-  // {
-  //   id: 6,
-  //   title: "Your Song Title",
-  //   artist: "Artist Name",
-  //   album: "Album Name",
-  //   duration: "3:30",
-  //   cover: "🎵",  // Emoji or you can use image URL
-  //   audioSrc: "/audio/your-file.mp3"
-  // }
 ];
 
 export default function MusicPlayer() {
@@ -74,7 +64,6 @@ export default function MusicPlayer() {
   const [currentTime, setCurrentTime] = useState(0);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const progressInterval = useRef<NodeJS.Timeout | null>(null);
 
   // Listen for play-from-artist-card events
   useEffect(() => {
@@ -207,153 +196,112 @@ export default function MusicPlayer() {
   };
 
   return (
-    <div className="rounded-3xl p-6 shadow-2xl" style={{ backgroundColor: "rgba(10, 8, 6, 0.9)", border: "1px solid rgba(255,255,255,0.08)" }}>
-      {/* Album Art & Current Track */}
-      <div className="text-center mb-6">
-        <div className="inline-flex items-center justify-center w-48 h-48 rounded-2xl shadow-xl mb-4 overflow-hidden" style={{ backgroundColor: "rgba(212,175,55,0.15)" }}>
-          {currentTrack.coverImage ? (
-            <img src={currentTrack.coverImage} alt={currentTrack.title} className="w-full h-full object-cover" />
-          ) : (
-            <span className="text-8xl">{currentTrack.cover}</span>
-          )}
-        </div>
-        <h3 className="text-2xl font-bold mb-1" style={{ fontFamily: "'Playfair Display', serif", color: "#F5F5F5" }}>{currentTrack.title}</h3>
-        <p className="text-lg" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Inter', system-ui, sans-serif" }}>{currentTrack.artist}</p>
-        <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>{currentTrack.album}</p>
-      </div>
-
+    <div className="flex-shrink-0 w-full" style={{ backgroundColor: '#0a0806', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
       {/* Progress Bar */}
-      <div className="mb-6">
-        <div className="relative h-2 rounded-full overflow-hidden" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
-          <div
-            className="absolute h-full rounded-full transition-all duration-300"
-            style={{ backgroundColor: "#D4AF37", width: `${progress}%` }}
-          />
-        </div>
-        <div className="flex justify-between text-xs mt-2" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>
-          <span>{formatTime(currentTime)}</span>
-          <span>{currentTrack.duration}</span>
-        </div>
-      </div>
-
-      {/* Controls */}
-      <div className="flex items-center justify-center gap-4 mb-6">
-        <button
-          onClick={() => setIsShuffled(!isShuffled)}
-          className="p-2 rounded-lg transition-all"
-          style={{ backgroundColor: isShuffled ? "#D4AF37" : "rgba(255,255,255,0.06)", color: isShuffled ? "#0a0806" : "rgba(255,255,255,0.5)" }}
-          title="Shuffle"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l-3.5-3.5M4 4l5 5" />
-          </svg>
-        </button>
-        
-        <button
-          onClick={playPrevious}
-          className="p-3 rounded-full transition-all"
-          style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.7)" }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.1)"}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.06)"}
-        >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
-          </svg>
-        </button>
-        
-        <button
-          onClick={togglePlay}
-          className="p-5 rounded-full text-white shadow-lg transition-all duration-200"
-          style={{ backgroundColor: "#C23B3B" }}
-          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#a93232"; e.currentTarget.style.transform = "scale(1.05)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#C23B3B"; e.currentTarget.style.transform = "scale(1)"; }}
-        >
-          {isPlaying ? (
-            <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-            </svg>
-          ) : (
-            <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          )}
-        </button>
-        
-        <button
-          onClick={playNext}
-          className="p-3 rounded-full transition-all"
-          style={{ backgroundColor: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.7)" }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.1)"}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.06)"}
-        >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
-          </svg>
-        </button>
-        
-        <button
-          onClick={toggleRepeat}
-          className="p-2 rounded-lg transition-all"
-          style={{ backgroundColor: repeatMode !== 'off' ? "#D4AF37" : "rgba(255,255,255,0.06)", color: repeatMode !== 'off' ? "#0a0806" : "rgba(255,255,255,0.5)" }}
-          title={`Repeat: ${repeatMode}`}
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-          </svg>
-          {repeatMode === 'one' && <span className="text-xs absolute">1</span>}
-        </button>
-      </div>
-
-      {/* Volume Control */}
-      <div className="flex items-center gap-3 mb-6">
-        <svg className="w-5 h-5" style={{ color: "rgba(255,255,255,0.5)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-        </svg>
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={volume}
-          onChange={(e) => setVolume(Number(e.target.value))}
-          className="flex-1 h-2 rounded-full appearance-none cursor-pointer"
-          style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
+      <div className="w-full h-1" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}>
+        <div
+          className="h-full transition-all duration-300"
+          style={{ backgroundColor: '#D4AF37', width: `${progress}%` }}
         />
       </div>
 
-      {/* Playlist */}
-      <div className="pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-        <h4 className="font-semibold mb-3 text-sm uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Inter', system-ui, sans-serif" }}>Playlist</h4>
-        <div className="space-y-2">
-          {tracks.map((track) => (
-            <button
-              key={track.id}
-              onClick={() => handleTrackSelect(track)}
-              className="w-full flex items-center gap-3 p-3 rounded-xl transition-all"
-              style={{
-                backgroundColor: currentTrack.id === track.id ? "rgba(212,175,55,0.15)" : "rgba(255,255,255,0.03)",
-                border: currentTrack.id === track.id ? "1px solid rgba(212,175,55,0.3)" : "1px solid transparent"
-              }}
-            >
-              {track.coverImage ? (
-                <img src={track.coverImage} alt={track.title} className="w-8 h-8 rounded object-cover" />
-              ) : (
-                <span className="text-2xl">{track.cover}</span>
-              )}
-              <div className="flex-1 text-left">
-                <p className="font-medium" style={{ color: currentTrack.id === track.id ? "#F5F5F5" : "rgba(255,255,255,0.7)", fontFamily: "'Inter', system-ui, sans-serif" }}>
-                  {track.title}
-                </p>
-                <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', system-ui, sans-serif" }}>{track.artist}</p>
-              </div>
-              {currentTrack.id === track.id && isPlaying && (
-                <div className="flex items-end gap-0.5 h-4">
-                  <div className="w-1 animate-pulse" style={{ backgroundColor: "#D4AF37", height: '60%' }}></div>
-                  <div className="w-1 animate-pulse" style={{ backgroundColor: "#C23B3B", height: '100%', animationDelay: '0.1s' }}></div>
-                  <div className="w-1 animate-pulse" style={{ backgroundColor: "rgba(255,255,255,0.5)", height: '40%', animationDelay: '0.2s' }}></div>
-                </div>
-              )}
-            </button>
-          ))}
+      {/* Player Controls */}
+      <div className="flex items-center justify-between px-6 py-3">
+        {/* Left: Track Info */}
+        <div className="flex items-center gap-3 min-w-0 flex-1">
+          {currentTrack.coverImage ? (
+            <img src={currentTrack.coverImage} alt={currentTrack.title} className="w-10 h-10 object-cover flex-shrink-0" style={{ aspectRatio: '1/1' }} />
+          ) : (
+            <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 text-lg" style={{ backgroundColor: 'rgba(212,175,55,0.15)' }}>{currentTrack.cover}</div>
+          )}
+          <div className="min-w-0">
+            <p className="text-sm font-medium truncate" style={{ color: '#F5F5F5', fontFamily: "'Inter', system-ui, sans-serif" }}>{currentTrack.title}</p>
+            <p className="text-xs truncate" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'Inter', system-ui, sans-serif" }}>{currentTrack.artist}</p>
+          </div>
+        </div>
+
+        {/* Center: Controls */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setIsShuffled(!isShuffled)}
+            className="p-2 rounded transition-all"
+            style={{ backgroundColor: isShuffled ? '#D4AF37' : 'rgba(255,255,255,0.06)', color: isShuffled ? '#0a0806' : 'rgba(255,255,255,0.5)' }}
+            title="Shuffle"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l-3.5-3.5M4 4l5 5" />
+            </svg>
+          </button>
+
+          <button
+            onClick={playPrevious}
+            className="p-2 rounded transition-all"
+            style={{ backgroundColor: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.7)' }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.06)'}
+          >
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+            </svg>
+          </button>
+
+          <button
+            onClick={togglePlay}
+            className="p-3 rounded-full text-white transition-all duration-200"
+            style={{ backgroundColor: '#C23B3B' }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#a93232'; e.currentTarget.style.transform = 'scale(1.05)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#C23B3B'; e.currentTarget.style.transform = 'scale(1)'; }}
+          >
+            {isPlaying ? (
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            )}
+          </button>
+
+          <button
+            onClick={playNext}
+            className="p-2 rounded transition-all"
+            style={{ backgroundColor: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.7)' }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.06)'}
+          >
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+            </svg>
+          </button>
+
+          <button
+            onClick={toggleRepeat}
+            className="p-2 rounded transition-all"
+            style={{ backgroundColor: repeatMode !== 'off' ? '#D4AF37' : 'rgba(255,255,255,0.06)', color: repeatMode !== 'off' ? '#0a0806' : 'rgba(255,255,255,0.5)' }}
+            title={`Repeat: ${repeatMode}`}
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Right: Volume + Time */}
+        <div className="flex items-center gap-3 flex-1 justify-end">
+          <span className="text-xs font-mono hidden sm:block" style={{ color: 'rgba(255,255,255,0.4)' }}>{formatTime(currentTime)}</span>
+          <svg className="w-4 h-4 hidden sm:block" style={{ color: 'rgba(255,255,255,0.5)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+          </svg>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={volume}
+            onChange={(e) => setVolume(Number(e.target.value))}
+            className="w-24 h-1 rounded-full appearance-none cursor-pointer hidden sm:block"
+            style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
+          />
         </div>
       </div>
     </div>
