@@ -41,28 +41,26 @@ export default function FeaturedTrack() {
               Autismdecon is driven by message, not just voice. The music is a definitive refusal to accept the flawed, radical pathology of autism. It doesn't waste time trying to prove or disprove anything to the neurotypical world; instead, it operates entirely from an autistic baseline as the logical default. Every song is fiercely autistic-centric, giving an entirely new meaning to unapologetic.
             </p>
 
-            {/* Track listing - Grid */}
+            {/* Album Art Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
               {[
-                { num: '01', title: '19.12 Precises', album: 'La Logique au Pouvoir' },
-                { num: '02', title: 'La Logique au Pouvoir', album: 'La Logique au Pouvoir' },
-                { num: '03', title: 'Deux Miroirs', album: 'La Logique au Pouvoir' },
-                { num: '04', title: 'Se du Vent', album: 'La Logique au Pouvoir' }
+                { title: '19.12 Precises', cover: '/audio/19-12-precises.png' },
+                { title: 'La Logique au Pouvoir', cover: '/audio/la-logique-au-pouvoir.png' },
+                { title: 'Deux Miroirs', cover: '/audio/deux-miroirs.png' },
+                { title: 'Se du Vent', cover: '/audio/se-du-vent.png' }
               ].map((track) => (
                 <button
-                  key={track.num}
+                  key={track.title}
                   onClick={() => {
                     window.dispatchEvent(new CustomEvent('playArtist', { detail: 'Autismdecon' }));
                     document.querySelector('#music-player')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-start text-left"
+                  className="flex flex-col items-start text-left group"
                 >
-                  <div className="w-full mb-2" style={{ aspectRatio: '1/1', backgroundColor: 'rgba(212,175,55,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span className="text-2xl font-mono" style={{ color: '#D4AF37' }}>{track.num}</span>
+                  <div className="w-full mb-2 overflow-hidden" style={{ aspectRatio: '1/1' }}>
+                    <img src={track.cover} alt={track.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                   </div>
-                  <div className="flex w-full justify-between items-baseline">
-                    <p className="text-sm font-medium truncate" style={{ color: '#F5F5F5', fontFamily: "'Inter', system-ui, sans-serif" }}>{track.title}</p>
-                  </div>
+                  <p className="text-sm font-medium truncate" style={{ color: '#F5F5F5', fontFamily: "'Inter', system-ui, sans-serif" }}>{track.title}</p>
                 </button>
               ))}
             </div>
