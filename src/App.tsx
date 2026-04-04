@@ -36,6 +36,9 @@ export default function App() {
         </div>
         <FeaturedTrack />
         <ArtistShowcase />
+        <div id="music-player" className="max-w-4xl mx-auto p-4">
+          <MusicPlayer />
+        </div>
         {/* Wave divider */}
         <div className="relative h-16 overflow-hidden">
           <svg className="absolute bottom-0 w-full h-16" viewBox="0 0 1440 64" preserveAspectRatio="none">
@@ -43,9 +46,6 @@ export default function App() {
           </svg>
         </div>
         <MissionStatement />
-        <div id="music-player" className="max-w-4xl mx-auto p-4">
-          <MusicPlayer />
-        </div>
       </main>
 
       {/* Footer */}

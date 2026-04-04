@@ -323,7 +323,7 @@ export default function MusicPlayer() {
       {/* Playlist */}
       <div className="pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
         <h4 className="font-semibold mb-3 text-sm uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Inter', system-ui, sans-serif" }}>Playlist</h4>
-        <div className="space-y-2 max-h-48 overflow-y-auto">
+        <div className="space-y-2">
           {tracks.map((track) => (
             <button
               key={track.id}
